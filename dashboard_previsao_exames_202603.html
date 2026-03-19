@@ -20,29 +20,39 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
 .filter-group select { min-width: 140px; }
 .btn-reset { background: #6B2D3E; color: #fff; border: none; padding: 6px 14px; border-radius: 4px; cursor: pointer; font-size: 0.8rem; }
 .btn-reset:hover { background: #4A1E2B; }
+.section-nav { background: #fff; padding: 8px 24px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; border-bottom: 1px solid #eee; }
+.section-nav a { text-decoration: none; padding: 4px 14px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; color: #6B2D3E; background: #f5f0eb; transition: all 0.2s; white-space: nowrap; }
+.section-nav a:hover, .section-nav a.active { background: #6B2D3E; color: #fff; }
 .container { max-width: 1400px; margin: 0 auto; padding: 16px; }
-.kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 20px; }
-.kpi-card { background: #fff; border-radius: 8px; padding: 16px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.08); border-top: 3px solid #6B2D3E; }
-.kpi-card .kpi-value { font-size: 1.5rem; font-weight: 700; color: #6B2D3E; margin: 4px 0; }
+.charts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media (max-width: 900px) { .charts-grid { grid-template-columns: 1fr; } }
+.kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 12px; }
+.kpi-card { background: #fff; border-radius: 8px; padding: 16px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.08); border-top: 3px solid #6B2D3E; transition: transform 0.2s; }
+.kpi-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
+.kpi-card .kpi-value { font-size: 1.7rem; font-weight: 700; color: #6B2D3E; margin: 4px 0; }
 .kpi-card .kpi-label { font-size: 0.75rem; color: #666; text-transform: uppercase; }
 .kpi-card .kpi-detail { font-size: 0.7rem; color: #999; margin-top: 2px; }
 .kpi-card.accent { border-top-color: #C4A35A; }
 .kpi-card.accent .kpi-value { color: #C4A35A; }
 .kpi-card .positive { color: #2E7D32; }
 .kpi-card .negative { color: #C62828; }
-.section { background: #fff; border-radius: 8px; padding: 20px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
-.section h2 { font-size: 1rem; color: #6B2D3E; margin-bottom: 12px; border-bottom: 2px solid #F8F6F3; padding-bottom: 8px; }
+.section { background: #fff; border-radius: 8px; padding: 20px; margin-bottom: 32px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.section h2 { font-size: 1.15rem; color: #6B2D3E; margin-bottom: 12px; border-bottom: 2px solid #F8F6F3; padding-bottom: 8px; padding-left: 12px; border-left: 4px solid #6B2D3E; }
+.section-badge { display: inline-block; background: linear-gradient(135deg, #6B2D3E, #4A1E2B); color: #fff; padding: 2px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: 700; margin-right: 8px; vertical-align: middle; }
 .chart-container { width: 100%; height: 400px; }
 .chart-container.tall { height: 500px; }
 .heatmap-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .heatmap-row .chart-container { height: 360px; }
+.table-summary { display: flex; gap: 24px; padding: 10px 16px; background: #f5f0eb; border-radius: 6px; margin-bottom: 12px; font-size: 0.8rem; color: #6B2D3E; }
+.table-summary span { font-weight: 700; }
 .table-controls { display: flex; gap: 12px; margin-bottom: 10px; align-items: center; }
 .table-controls input { padding: 6px 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 0.85rem; width: 260px; }
 .table-wrap { overflow-x: auto; max-height: 500px; overflow-y: auto; }
-table.detail { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
-table.detail th { position: sticky; top: 0; background: #6B2D3E; color: #fff; padding: 8px 6px; text-align: left; cursor: pointer; white-space: nowrap; user-select: none; }
+table.detail { width: 100%; border-collapse: collapse; font-size: 0.72rem; }
+table.detail th { position: sticky; top: 0; background: #6B2D3E; color: #fff; padding: 6px 5px; text-align: left; cursor: pointer; white-space: nowrap; user-select: none; }
 table.detail th:hover { background: #4A1E2B; }
-table.detail td { padding: 6px; border-bottom: 1px solid #eee; white-space: nowrap; }
+table.detail td { padding: 4px 5px; border-bottom: 1px solid #eee; white-space: nowrap; }
+table.detail td.num { text-align: right; font-variant-numeric: tabular-nums; }
 table.detail tr:hover { background: #f5f0eb; }
 table.detail tr:nth-child(even) { background: #faf8f5; }
 table.detail tr:nth-child(even):hover { background: #f5f0eb; }
@@ -60,6 +70,7 @@ table.detail tr:nth-child(even):hover { background: #f5f0eb; }
 .methods-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .methods-row .chart-container { height: 320px; }
 @media (max-width: 900px) { .methods-row { grid-template-columns: 1fr; } }
+.page-footer { background: linear-gradient(135deg, #4A1E2B, #2C1320); color: rgba(255,255,255,0.7); padding: 16px 24px; text-align: center; font-size: 0.75rem; margin-top: 20px; }
 .login-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:linear-gradient(135deg,#6B2D3E,#4A1E2B); display:flex; align-items:center; justify-content:center; z-index:9999; }
 .login-box { background:#fff; padding:40px; border-radius:12px; box-shadow:0 8px 32px rgba(0,0,0,.3); text-align:center; min-width:320px; }
 .login-box h2 { color:#6B2D3E; margin:0 0 24px; font-size:1.5rem; }
@@ -67,6 +78,16 @@ table.detail tr:nth-child(even):hover { background: #f5f0eb; }
 .login-box button { width:100%; padding:12px; background:#6B2D3E; color:#fff; border:none; border-radius:6px; font-size:1rem; cursor:pointer; }
 .login-box button:hover { background:#4A1E2B; }
 .login-error { color:#c0392b; margin-top:12px; display:none; font-size:.9rem; }
+.reading-guide { max-width: 1400px; margin: 0 auto; padding: 0 16px 20px; }
+.reading-guide .guide-box { background: #fff; border-radius: 8px; padding: 20px 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.reading-guide h2 { font-size: 1.15rem; color: #6B2D3E; margin-bottom: 16px; border-bottom: 2px solid #F8F6F3; padding-bottom: 8px; padding-left: 12px; border-left: 4px solid #6B2D3E; }
+.reading-guide h3 { font-size: 0.95rem; color: #4A1E2B; margin: 16px 0 8px; }
+.reading-guide p, .reading-guide li { font-size: 0.82rem; color: #444; line-height: 1.6; }
+.reading-guide ul { margin-left: 20px; margin-bottom: 12px; }
+.reading-guide .method-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 12px 0; }
+.reading-guide .method-card { background: #f5f0eb; border-radius: 6px; padding: 10px 14px; font-size: 0.8rem; }
+.reading-guide .method-card strong { color: #6B2D3E; }
+@media (max-width: 900px) { .reading-guide .method-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -111,24 +132,43 @@ table.detail tr:nth-child(even):hover { background: #f5f0eb; }
     <button class="btn-reset" onclick="resetFilters()">Limpar Filtros</button>
 </div>
 
-<div class="container">
-    <div class="kpi-row" id="kpi-row"></div>
+<div class="section-nav">
+    <a href="#sec-kpi">01 KPIs</a>
+    <a href="#sec-operadora">02 Operadora</a>
+    <a href="#sec-rede">03 Rede</a>
+    <a href="#sec-serie">04 Serie Temporal</a>
+    <a href="#sec-heatmap">05 Heatmaps</a>
+    <a href="#sec-metodos">06 Metodos</a>
+    <a href="#sec-tabela">07 Tabela</a>
+    <a href="#sec-guia">08 Guia</a>
+</div>
 
-    <div class="section">
-        <h2>Previsao por Operadora</h2>
-        <div class="chart-container" id="chart-operadora"></div>
+<div class="container">
+    <div id="sec-kpi">
+        <div class="kpi-row" id="kpi-row-all"></div>
     </div>
 
-    <div class="section">
-        <h2>Serie Temporal Interativa</h2>
+    <div class="charts-grid">
+        <div class="section" id="sec-operadora">
+            <h2><span class="section-badge">02</span>Previsao por Operadora</h2>
+            <div class="chart-container" id="chart-operadora"></div>
+        </div>
+        <div class="section" id="sec-rede">
+            <h2><span class="section-badge">03</span>Previsao por Rede</h2>
+            <div class="chart-container" id="chart-rede"></div>
+        </div>
+    </div>
+
+    <div class="section" id="sec-serie">
+        <h2><span class="section-badge">04</span>Serie Temporal Interativa</h2>
         <div style="margin-bottom:10px">
             <select id="sel-serie" style="padding:6px 10px;border:1px solid #ddd;border-radius:4px;font-size:0.85rem;min-width:350px;"></select>
         </div>
         <div class="chart-container tall" id="chart-serie"></div>
     </div>
 
-    <div class="section">
-        <h2>Heatmap: Variacao % (Operadora x Rede)</h2>
+    <div class="section" id="sec-heatmap">
+        <h2><span class="section-badge">05</span>Heatmap: Variacao % (Operadora x Rede)</h2>
         <div class="heatmap-row">
             <div>
                 <h3 style="font-size:0.85rem;color:#666;margin-bottom:6px;">vs M-1 (<span class="lbl-m1"></span>)</h3>
@@ -141,8 +181,8 @@ table.detail tr:nth-child(even):hover { background: #f5f0eb; }
         </div>
     </div>
 
-    <div class="section">
-        <h2>Comparacao de Metodos</h2>
+    <div class="section" id="sec-metodos">
+        <h2><span class="section-badge">06</span>Comparacao de Metodos</h2>
         <div class="methods-row">
             <div>
                 <h3 style="font-size:0.85rem;color:#666;margin-bottom:6px;">Backtest RMSE / Tracking Signal</h3>
@@ -155,8 +195,13 @@ table.detail tr:nth-child(even):hover { background: #f5f0eb; }
         </div>
     </div>
 
-    <div class="section">
-        <h2>Tabela Detalhe (10 series)</h2>
+    <div class="section" id="sec-tabela">
+        <h2><span class="section-badge">07</span>Tabela Detalhe (10 series)</h2>
+        <div class="table-summary" id="tbl-summary">
+            <div>Registros: <span id="tbl-total-count">0</span></div>
+            <div>Previsao Total: <span id="tbl-total-prev">0</span></div>
+            <div>Parcial Total: <span id="tbl-total-parc">0</span></div>
+        </div>
         <div class="table-controls">
             <input type="text" id="tbl-search" placeholder="Buscar operadora, rede...">
             <span id="tbl-count" style="font-size:0.8rem;color:#999;"></span>
@@ -170,6 +215,77 @@ table.detail tr:nth-child(even):hover { background: #f5f0eb; }
     </div>
 </div>
 
+<div class="reading-guide" id="sec-guia">
+    <div class="guide-box">
+        <h2><span class="section-badge">08</span>Guia de Leitura</h2>
+
+        <h3>Indicadores KPI</h3>
+        <ul>
+            <li><strong>Parcial:</strong> Quantidade de exames realizada acumulada ate a data atual do mes.</li>
+            <li><strong>Previsao:</strong> Estimativa de fechamento do mes, calculada pelo Ensemble Ponderado de 7 metodos (detalhado abaixo).</li>
+            <li><strong>Ratio (Previsao / Parcial):</strong> Fator multiplicador que indica quantas vezes o valor previsto representa do parcial. Exemplo: Ratio 1,62x significa que a previsao e 62% maior que o realizado parcial.</li>
+            <li><strong>Series:</strong> Numero de combinacoes unicas (Operadora &times; Rede) ativas no filtro selecionado.</li>
+            <li><strong>% Mes:</strong> Percentual de dias ja transcorridos no mes corrente.</li>
+            <li><strong>VAR M-1 (Variacao Mes Anterior):</strong> Variacao percentual da previsao em relacao ao mes imediatamente anterior (M-1). Valores negativos (em verde) indicam reducao; positivos (em vermelho) indicam aumento.</li>
+            <li><strong>VAR YoY (Variacao Year-over-Year):</strong> Variacao percentual da previsao em relacao ao mesmo mes do ano anterior. Permite avaliar a tendencia interanual.</li>
+        </ul>
+
+        <h3>Metodo Final: Ensemble Ponderado</h3>
+        <p>A previsao de cada serie utiliza um <strong>Ensemble Ponderado de 7 metodos</strong>, onde os pesos sao alocados por Tier (baseado na quantidade de meses historicos disponiveis):</p>
+
+        <div class="method-grid">
+            <div class="method-card">
+                <strong>M1 &mdash; Proporcional</strong><br>
+                Projeta o fechamento com base na fracao do mes transcorrida (Parcial &divide; % Mes).
+            </div>
+            <div class="method-card">
+                <strong>M2 &mdash; Proporcional Ajustado</strong><br>
+                Variante do proporcional com fator de aceleracao (1,05) baseado no padrao historico de evolucao diaria.
+            </div>
+            <div class="method-card">
+                <strong>M3 &mdash; Holt-Winters</strong><br>
+                Suavizacao exponencial tripla que captura nivel, tendencia e sazonalidade da serie temporal.
+            </div>
+            <div class="method-card">
+                <strong>M4 &mdash; SARIMAX(1,1,1)(1,0,0,12)</strong><br>
+                Modelo autorregressivo integrado com componentes sazonais de 12 meses e variaveis exogenas.
+            </div>
+            <div class="method-card">
+                <strong>M5 &mdash; ML Ensemble (4 modelos)</strong><br>
+                Combinacao de Ridge Regression, Gradient Boosting (GBR), XGBoost (XGB) e Random Forest (RF) com features padronizadas.
+            </div>
+            <div class="method-card">
+                <strong>M6 &mdash; Referencia Historica</strong><br>
+                Utiliza o valor do mesmo mes do ano anterior multiplicado por fator de crescimento.
+            </div>
+            <div class="method-card">
+                <strong>M7 &mdash; Media Movel 3</strong><br>
+                Media simples dos 3 ultimos meses completos, capturando a tendencia recente de curto prazo.
+            </div>
+        </div>
+
+        <h3>Alocacao de Pesos por Tier</h3>
+        <ul>
+            <li><strong>Tier 1 (10+ meses de historico):</strong> Todos os 7 metodos participam. Maior peso para Proporcional (25%), ML Ensemble (25%), Proporcional Ajustado (15%) e Referencia Historica (15%).</li>
+            <li><strong>Tier 2 (6&ndash;9 meses):</strong> 4 metodos ativos. Proporcional (30%), ML Ensemble (30%), Proporcional Ajustado (20%) e Referencia Historica (20%).</li>
+            <li><strong>Tier 3 (3&ndash;5 meses):</strong> 3 metodos ativos. Proporcional (40%), Proporcional Ajustado (30%) e Media Movel 3 (30%).</li>
+            <li><strong>Tier 4 (&lt;3 meses):</strong> Apenas Proporcional (100%) &mdash; dados insuficientes para metodos mais complexos.</li>
+        </ul>
+
+        <h3>Secoes do Dashboard</h3>
+        <ul>
+            <li><strong>02&ndash;03 Graficos de Barras:</strong> Comparam a previsao atual com o realizado do mes anterior (M-1) e do mesmo mes do ano anterior (YoY), por Operadora e Rede.</li>
+            <li><strong>04 Serie Temporal:</strong> Historico mensal de cada combinacao individual, com a previsao e intervalo de confianca (IC 95%).</li>
+            <li><strong>05 Heatmaps:</strong> Mapas de calor com a variacao percentual por Operadora e Rede, facilitando identificacao visual de desvios.</li>
+            <li><strong>06 Comparacao de Metodos:</strong> Backtest com RMSE e Tracking Signal para avaliar a precisao dos metodos, alem da distribuicao de series por Tier.</li>
+            <li><strong>07 Tabela Detalhe:</strong> Dados individuais de cada serie com valores completos, ordenaveis e filtraveis.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="page-footer">
+    Previsao Exames &mdash; Dashboard de analise | Dados atualizados automaticamente &bull; 2026
+</div>
 </div>
 
 <script>
@@ -193,12 +309,14 @@ document.getElementById("login-user").addEventListener("keydown", function(e) {
 </script>
 
 <script>
-const D = {"meta": {"mes_corrente": "2026-03", "mes_corrente_label": "Mar/2026", "dias_realizados": 18, "dias_no_mes": 31, "frac_mes": 0.5806, "data_execucao": "19/03/2026 05:50", "total_series": 10, "total_parcial": 3504458.0, "total_previsao": 9347596.0, "meses_labels": ["2025-01", "2025-02", "2025-03", "2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-09", "2025-10", "2025-11", "2025-12", "2026-01", "2026-02"], "mes_m1_label": "Feb/2026", "mes_yoy_label": "Mar/2025"}, "series": {"CCG|PREST. CRED": {"2025-01": 35995.0, "2025-02": 35987.0, "2025-03": 38018.0, "2025-04": 37649.0, "2025-05": 39400.0, "2025-06": 34857.0, "2025-07": 42118.0, "2025-08": 37498.0, "2025-09": 41059.0, "2025-10": 45151.0, "2025-11": 39204.0, "2025-12": 34018.0, "2026-01": 40574.0, "2026-02": 33591.0}, "CCG|PREST. PROP": {"2025-01": 134168.0, "2025-02": 121731.0, "2025-03": 124358.0, "2025-04": 130974.0, "2025-05": 136959.0, "2025-06": 121091.0, "2025-07": 137304.0, "2025-08": 131347.0, "2025-09": 137187.0, "2025-10": 148514.0, "2025-11": 124541.0, "2025-12": 109425.0, "2026-01": 138569.0, "2026-02": 112966.0}, "CLINIPAM|PREST. CRED": {"2025-01": 141921.0, "2025-02": 148485.0, "2025-03": 149965.0, "2025-04": 144715.0, "2025-05": 151735.0, "2025-06": 129712.0, "2025-07": 147915.0, "2025-08": 141024.0, "2025-09": 143267.0, "2025-10": 154489.0, "2025-11": 127917.0, "2025-12": 89797.0, "2026-01": 130740.0, "2026-02": 128110.0}, "CLINIPAM|PREST. PROP": {"2025-01": 226658.0, "2025-02": 225815.0, "2025-03": 230976.0, "2025-04": 220396.0, "2025-05": 239860.0, "2025-06": 198362.0, "2025-07": 232158.0, "2025-08": 236267.0, "2025-09": 234192.0, "2025-10": 245232.0, "2025-11": 220841.0, "2025-12": 176343.0, "2026-01": 260234.0, "2026-02": 234427.0}, "HAPVIDA|PREST. CRED": {"2025-01": 1381112.0, "2025-02": 1331596.0, "2025-03": 1289027.0, "2025-04": 1320228.0, "2025-05": 1393503.0, "2025-06": 1225717.0, "2025-07": 1475925.0, "2025-08": 1398827.0, "2025-09": 1489356.0, "2025-10": 1549766.0, "2025-11": 1348201.0, "2025-12": 1102627.0, "2026-01": 1525945.0, "2026-02": 1324031.0}, "HAPVIDA|PREST. PROP": {"2025-01": 4887835.0, "2025-02": 4548417.0, "2025-03": 4544297.0, "2025-04": 4743456.0, "2025-05": 5070824.0, "2025-06": 4364161.0, "2025-07": 5373056.0, "2025-08": 5205982.0, "2025-09": 5227261.0, "2025-10": 5278311.0, "2025-11": 4600454.0, "2025-12": 3940791.0, "2026-01": 5506134.0, "2026-02": 4529928.0}, "NDI|PREST. CRED": {"2025-01": 2122359.0, "2025-02": 2080624.0, "2025-03": 2075195.0, "2025-04": 1950787.0, "2025-05": 2170389.0, "2025-06": 1794524.0, "2025-07": 2009434.0, "2025-08": 1978815.0, "2025-09": 2016350.0, "2025-10": 2055718.0, "2025-11": 1798091.0, "2025-12": 1334067.0, "2026-01": 1873947.0, "2026-02": 1699653.0}, "NDI|PREST. PROP": {"2025-01": 2714904.0, "2025-02": 2554913.0, "2025-03": 2659124.0, "2025-04": 2566962.0, "2025-05": 2801646.0, "2025-06": 2334768.0, "2025-07": 2613474.0, "2025-08": 2605802.0, "2025-09": 2674861.0, "2025-10": 2795754.0, "2025-11": 2539381.0, "2025-12": 1971882.0, "2026-01": 2663490.0, "2026-02": 2425074.0}, "NDIMG|PREST. CRED": {"2025-01": 480923.0, "2025-02": 455631.0, "2025-03": 452200.0, "2025-04": 442470.0, "2025-05": 468706.0, "2025-06": 411461.0, "2025-07": 472486.0, "2025-08": 465565.0, "2025-09": 475095.0, "2025-10": 482075.0, "2025-11": 423964.0, "2025-12": 342766.0, "2026-01": 462823.0, "2026-02": 403768.0}, "NDIMG|PREST. PROP": {"2025-01": 51240.0, "2025-02": 46080.0, "2025-03": 48536.0, "2025-04": 54097.0, "2025-05": 59908.0, "2025-06": 52563.0, "2025-07": 58465.0, "2025-08": 55513.0, "2025-09": 57556.0, "2025-10": 57565.0, "2025-11": 55211.0, "2025-12": 47450.0, "2026-01": 63098.0, "2026-02": 57821.0}}, "forecast": [{"OPERADORA": "CCG", "REDE_PRESTADOR": "PREST. CRED", "TIER": 1, "MESES_COM_DADOS": 14, "QT_PARCIAL": 11446, "PREVISAO": 30145.0, "IC_LOW": 14673.0, "IC_HIGH": 45617.0, "DESVIO": 7894.0, "M_PROP": 19712.555555555555, "M_PROP_AJ": 20698.183333333334, "M_HW": 38209.7445682572, "M_SARIMAX": 35362.01728131083, "M_ML": 38971.7256659057, "M_REF": 33411.02994287251, "M_MM3": 0.0, "N_METODOS_VALIDOS": 6}, {"OPERADORA": "CCG", "REDE_PRESTADOR": "PREST. PROP", "TIER": 1, "MESES_COM_DADOS": 14, "QT_PARCIAL": 40104, "PREVISAO": 100710.0, "IC_LOW": 52593.0, "IC_HIGH": 148827.0, "DESVIO": 24549.0, "M_PROP": 69068.0, "M_PROP_AJ": 72521.40000000001, "M_HW": 131350.78447369122, "M_SARIMAX": 116377.50722359904, "M_ML": 125940.56139367195, "M_REF": 108712.32401358882, "M_MM3": 0.0, "N_METODOS_VALIDOS": 6}, {"OPERADORA": "CLINIPAM", "REDE_PRESTADOR": "PREST. CRED", "TIER": 1, "MESES_COM_DADOS": 14, "QT_PARCIAL": 38019, "PREVISAO": 105010.0, "IC_LOW": 46181.0, "IC_HIGH": 163839.0, "DESVIO": 30015.0, "M_PROP": 65477.166666666664, "M_PROP_AJ": 68751.025, "M_HW": 124343.73225037774, "M_SARIMAX": 127152.14679058587, "M_ML": 129086.73664264649, "M_REF": 139376.7961003051, "M_MM3": 0.0, "N_METODOS_VALIDOS": 6}, {"OPERADORA": "CLINIPAM", "REDE_PRESTADOR": "PREST. PROP", "TIER": 1, "MESES_COM_DADOS": 14, "QT_PARCIAL": 73492, "PREVISAO": 187871.0, "IC_LOW": 93098.0, "IC_HIGH": 282645.0, "DESVIO": 48354.0, "M_PROP": 126569.55555555555, "M_PROP_AJ": 132898.03333333333, "M_HW": 237792.27825468796, "M_SARIMAX": 233195.81066143812, "M_ML": 213830.20856955068, "M_REF": 238251.12902194727, "M_MM3": 0.0, "N_METODOS_VALIDOS": 6}, {"OPERADORA": "HAPVIDA", "REDE_PRESTADOR": "PREST. CRED", "TIER": 1, "MESES_COM_DADOS": 14, "QT_PARCIAL": 434649, "PREVISAO": 1117012.0, "IC_LOW": 565621.0, "IC_HIGH": 1668404.0, "DESVIO": 281322.0, "M_PROP": 748562.1666666666, "M_PROP_AJ": 785990.275, "M_HW": 1431201.618035909, "M_SARIMAX": 1332891.7934038164, "M_ML": 1393848.9447820247, "M_REF": 1247344.8157573289, "M_MM3": 0.0, "N_METODOS_VALIDOS": 6}, {"OPERADORA": "HAPVIDA", "REDE_PRESTADOR": "PREST. PROP", "TIER": 1, "MESES_COM_DADOS": 14, "QT_PARCIAL": 1467852, "PREVISAO": 3898083.0, "IC_LOW": 1772788.0, "IC_HIGH": 6023378.0, "DESVIO": 1084334.0, "M_PROP": 2527967.333333333, "M_PROP_AJ": 2654365.6999999997, "M_HW": 5320893.756632813, "M_SARIMAX": 4638475.034699353, "M_ML": 4938388.870289049, "M_REF": 4249349.468131176, "M_MM3": 0.0, "N_METODOS_VALIDOS": 6}, {"OPERADORA": "NDI", "REDE_PRESTADOR": "PREST. CRED", "TIER": 1, "MESES_COM_DADOS": 14, "QT_PARCIAL": 526264, "PREVISAO": 1443794.0, "IC_LOW": 636473.0, "IC_HIGH": 2251116.0, "DESVIO": 411899.0, "M_PROP": 906343.5555555555, "M_PROP_AJ": 951660.7333333333, "M_HW": 1873196.521861563, "M_SARIMAX": 1715967.6476729005, "M_ML": 1763218.0392669458, "M_REF": 1831589.2354370945, "M_MM3": 0.0, "N_METODOS_VALIDOS": 6}, {"OPERADORA": "NDI", "REDE_PRESTADOR": "PREST. PROP", "TIER": 1, "MESES_COM_DADOS": 14, "QT_PARCIAL": 763111, "PREVISAO": 2067166.0, "IC_LOW": 959082.0, "IC_HIGH": 3175250.0, "DESVIO": 565349.0, "M_PROP": 1314246.7222222222, "M_PROP_AJ": 1379959.0583333333, "M_HW": 2612898.257143075, "M_SARIMAX": 2421668.2002860215, "M_ML": 2604683.439934001, "M_REF": 2513221.053664248, "M_MM3": 0.0, "N_METODOS_VALIDOS": 6}, {"OPERADORA": "NDIMG", "REDE_PRESTADOR": "PREST. CRED", "TIER": 1, "MESES_COM_DADOS": 14, "QT_PARCIAL": 129556, "PREVISAO": 350023.0, "IC_LOW": 160999.0, "IC_HIGH": 539047.0, "DESVIO": 96441.0, "M_PROP": 223124.22222222222, "M_PROP_AJ": 234280.43333333335, "M_HW": 456739.1526001689, "M_SARIMAX": 408232.6305909313, "M_ML": 444622.7698698611, "M_REF": 409647.7405125984, "M_MM3": 0.0, "N_METODOS_VALIDOS": 6}, {"OPERADORA": "NDIMG", "REDE_PRESTADOR": "PREST. PROP", "TIER": 1, "MESES_COM_DADOS": 14, "QT_PARCIAL": 19965, "PREVISAO": 47782.0, "IC_LOW": 27438.0, "IC_HIGH": 68125.0, "DESVIO": 10379.0, "M_PROP": 34384.166666666664, "M_PROP_AJ": 36103.375, "M_HW": 58651.163049318624, "M_SARIMAX": 59121.075833814335, "M_ML": 57161.16305012257, "M_REF": 51352.041207523696, "M_MM3": 0.0, "N_METODOS_VALIDOS": 6}], "comparativo": [{"OPERADORA": "CCG", "REDE_PRESTADOR": "PREST. CRED", "QTD_PREVISTA": 30145.0, "QTD_M1": 33591, "QTD_YOY": 38018, "VAR_M1_PCT": -0.10258700247089991, "VAR_YOY_PCT": -0.2070861171024252}, {"OPERADORA": "CCG", "REDE_PRESTADOR": "PREST. PROP", "QTD_PREVISTA": 100710.0, "QTD_M1": 112966, "QTD_YOY": 124358, "VAR_M1_PCT": -0.108492820848751, "VAR_YOY_PCT": -0.19016066517634567}, {"OPERADORA": "CLINIPAM", "REDE_PRESTADOR": "PREST. CRED", "QTD_PREVISTA": 105010.0, "QTD_M1": 128110, "QTD_YOY": 149965, "VAR_M1_PCT": -0.18031379283428306, "VAR_YOY_PCT": -0.2997699463208082}, {"OPERADORA": "CLINIPAM", "REDE_PRESTADOR": "PREST. PROP", "QTD_PREVISTA": 187871.0, "QTD_M1": 234427, "QTD_YOY": 230976, "VAR_M1_PCT": -0.19859487175112078, "VAR_YOY_PCT": -0.18662112080908844}, {"OPERADORA": "HAPVIDA", "REDE_PRESTADOR": "PREST. CRED", "QTD_PREVISTA": 1117012.0, "QTD_M1": 1324031, "QTD_YOY": 1289027, "VAR_M1_PCT": -0.15635510044704393, "VAR_YOY_PCT": -0.13344561440528402}, {"OPERADORA": "HAPVIDA", "REDE_PRESTADOR": "PREST. PROP", "QTD_PREVISTA": 3898083.0, "QTD_M1": 4529928, "QTD_YOY": 4544297, "VAR_M1_PCT": -0.1394823493883347, "VAR_YOY_PCT": -0.14220329349072036}, {"OPERADORA": "NDI", "REDE_PRESTADOR": "PREST. CRED", "QTD_PREVISTA": 1443794.0, "QTD_M1": 1699653, "QTD_YOY": 2075195, "VAR_M1_PCT": -0.1505360211760871, "VAR_YOY_PCT": -0.3042610453475456}, {"OPERADORA": "NDI", "REDE_PRESTADOR": "PREST. PROP", "QTD_PREVISTA": 2067166.0, "QTD_M1": 2425074, "QTD_YOY": 2659124, "VAR_M1_PCT": -0.1475864241668502, "VAR_YOY_PCT": -0.22261391345420523}, {"OPERADORA": "NDIMG", "REDE_PRESTADOR": "PREST. CRED", "QTD_PREVISTA": 350023.0, "QTD_M1": 403768, "QTD_YOY": 452200, "VAR_M1_PCT": -0.1331086168294664, "VAR_YOY_PCT": -0.22595532950022112}, {"OPERADORA": "NDIMG", "REDE_PRESTADOR": "PREST. PROP", "QTD_PREVISTA": 47782.0, "QTD_M1": 57821, "QTD_YOY": 48536, "VAR_M1_PCT": -0.17362204043513607, "VAR_YOY_PCT": -0.015534860721938326}], "agg_operadora": [{"OPERADORA": "HAPVIDA", "QTD_PREVISTA": 5015095.0, "QTD_M1": 5853959, "QTD_YOY": 5833324, "VAR_M1_PCT": -0.14329857793674328, "VAR_YOY_PCT": -0.14026805300031342}, {"OPERADORA": "NDI", "QTD_PREVISTA": 3510960.0, "QTD_M1": 4124727, "QTD_YOY": 4734319, "VAR_M1_PCT": -0.14880184797684792, "VAR_YOY_PCT": -0.25840231720760687}, {"OPERADORA": "NDIMG", "QTD_PREVISTA": 397805.0, "QTD_M1": 461589, "QTD_YOY": 500736, "VAR_M1_PCT": -0.1381835355695218, "VAR_YOY_PCT": -0.2055594165388548}, {"OPERADORA": "CLINIPAM", "QTD_PREVISTA": 292881.0, "QTD_M1": 362537, "QTD_YOY": 380941, "VAR_M1_PCT": -0.19213487175102129, "VAR_YOY_PCT": -0.23116440603663035}, {"OPERADORA": "CCG", "QTD_PREVISTA": 130855.0, "QTD_M1": 146557, "QTD_YOY": 162376, "VAR_M1_PCT": -0.10713920181226422, "VAR_YOY_PCT": -0.1941235157905109}], "agg_rede": [{"REDE_PRESTADOR": "PREST. CRED", "QTD_PREVISTA": 3045984.0, "QTD_M1": 3589153, "QTD_YOY": 4004405, "VAR_M1_PCT": -0.15133626234378972, "VAR_YOY_PCT": -0.2393416749804278}, {"REDE_PRESTADOR": "PREST. PROP", "QTD_PREVISTA": 6301612.0, "QTD_M1": 7360216, "QTD_YOY": 7607291, "VAR_M1_PCT": -0.1438278441828338, "VAR_YOY_PCT": -0.17163521153588046}], "backtest": [{"METODO": "prop", "RMSE": 6.024856105650463e-11, "TS": -27.39130434782609, "N": 30}, {"METODO": "prop_aj", "RMSE": 90118.5189326918, "TS": 30.0, "N": 30}, {"METODO": "hw", "RMSE": 390824.5654741976, "TS": 19.892088960295048, "N": 30}, {"METODO": "sarimax", "RMSE": 305935.3250162502, "TS": 19.295998280502168, "N": 30}, {"METODO": "ml", "RMSE": 350797.7147665816, "TS": 8.001774664986623, "N": 30}, {"METODO": "ref", "RMSE": 419080.7836388286, "TS": -7.678486116520695, "N": 20}], "heatmap": {"operadoras": ["CCG", "CLINIPAM", "HAPVIDA", "NDI", "NDIMG"], "redes": ["PREST. CRED", "PREST. PROP"], "values_m1": [[-0.1026, -0.1085], [-0.1803, -0.1986], [-0.1564, -0.1395], [-0.1505, -0.1476], [-0.1331, -0.1736]], "values_yoy": [[-0.2071, -0.1902], [-0.2998, -0.1866], [-0.1334, -0.1422], [-0.3043, -0.2226], [-0.226, -0.0155]]}, "tier_dist": {"1": 10}};
+const D = {"meta": {"mes_corrente": "2026-03", "mes_corrente_label": "Mar/2026", "dias_realizados": 13, "dias_no_mes": 31, "frac_mes": 0.4194, "data_execucao": "19/03/2026 08:00", "total_series": 10, "total_parcial": 5465890.0, "total_previsao": 12199521.0, "meses_labels": ["2025-01", "2025-02", "2025-03", "2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-09", "2025-10", "2025-11", "2025-12", "2026-01", "2026-02"], "mes_m1_label": "Feb/2026", "mes_yoy_label": "Mar/2025"}, "series": {"CCG|PREST. CRED": {"2025-01": 35995.0, "2025-02": 35987.0, "2025-03": 38018.0, "2025-04": 37649.0, "2025-05": 39400.0, "2025-06": 34857.0, "2025-07": 42118.0, "2025-08": 37498.0, "2025-09": 41059.0, "2025-10": 45151.0, "2025-11": 39204.0, "2025-12": 34018.0, "2026-01": 40574.0, "2026-02": 33591.0}, "CCG|PREST. PROP": {"2025-01": 134168.0, "2025-02": 121731.0, "2025-03": 124358.0, "2025-04": 130974.0, "2025-05": 136959.0, "2025-06": 121091.0, "2025-07": 137304.0, "2025-08": 131347.0, "2025-09": 137187.0, "2025-10": 148514.0, "2025-11": 124541.0, "2025-12": 109425.0, "2026-01": 138569.0, "2026-02": 112966.0}, "CLINIPAM|PREST. CRED": {"2025-01": 141921.0, "2025-02": 148485.0, "2025-03": 149965.0, "2025-04": 144715.0, "2025-05": 151735.0, "2025-06": 129712.0, "2025-07": 147915.0, "2025-08": 141024.0, "2025-09": 143267.0, "2025-10": 154489.0, "2025-11": 127917.0, "2025-12": 89797.0, "2026-01": 130740.0, "2026-02": 128110.0}, "CLINIPAM|PREST. PROP": {"2025-01": 226658.0, "2025-02": 225815.0, "2025-03": 230976.0, "2025-04": 220396.0, "2025-05": 239860.0, "2025-06": 198362.0, "2025-07": 232158.0, "2025-08": 236267.0, "2025-09": 234192.0, "2025-10": 245232.0, "2025-11": 220841.0, "2025-12": 176343.0, "2026-01": 260234.0, "2026-02": 234427.0}, "HAPVIDA|PREST. CRED": {"2025-01": 1381112.0, "2025-02": 1331596.0, "2025-03": 1289027.0, "2025-04": 1320228.0, "2025-05": 1393503.0, "2025-06": 1225717.0, "2025-07": 1475925.0, "2025-08": 1398827.0, "2025-09": 1489356.0, "2025-10": 1549766.0, "2025-11": 1348201.0, "2025-12": 1102627.0, "2026-01": 1525945.0, "2026-02": 1324031.0}, "HAPVIDA|PREST. PROP": {"2025-01": 4887835.0, "2025-02": 4548417.0, "2025-03": 4544297.0, "2025-04": 4743456.0, "2025-05": 5070824.0, "2025-06": 4364161.0, "2025-07": 5373056.0, "2025-08": 5205982.0, "2025-09": 5227261.0, "2025-10": 5278311.0, "2025-11": 4600454.0, "2025-12": 3940791.0, "2026-01": 5506134.0, "2026-02": 4529928.0}, "NDI|PREST. CRED": {"2025-01": 2122359.0, "2025-02": 2080624.0, "2025-03": 2075195.0, "2025-04": 1950787.0, "2025-05": 2170389.0, "2025-06": 1794524.0, "2025-07": 2009434.0, "2025-08": 1978815.0, "2025-09": 2016350.0, "2025-10": 2055718.0, "2025-11": 1798091.0, "2025-12": 1334067.0, "2026-01": 1873947.0, "2026-02": 1699653.0}, "NDI|PREST. PROP": {"2025-01": 2714904.0, "2025-02": 2554913.0, "2025-03": 2659124.0, "2025-04": 2566962.0, "2025-05": 2801646.0, "2025-06": 2334768.0, "2025-07": 2613474.0, "2025-08": 2605802.0, "2025-09": 2674861.0, "2025-10": 2795754.0, "2025-11": 2539381.0, "2025-12": 1971882.0, "2026-01": 2663490.0, "2026-02": 2425074.0}, "NDIMG|PREST. CRED": {"2025-01": 480923.0, "2025-02": 455631.0, "2025-03": 452200.0, "2025-04": 442470.0, "2025-05": 468706.0, "2025-06": 411461.0, "2025-07": 472486.0, "2025-08": 465565.0, "2025-09": 475095.0, "2025-10": 482075.0, "2025-11": 423964.0, "2025-12": 342766.0, "2026-01": 462823.0, "2026-02": 403768.0}, "NDIMG|PREST. PROP": {"2025-01": 51240.0, "2025-02": 46080.0, "2025-03": 48536.0, "2025-04": 54097.0, "2025-05": 59908.0, "2025-06": 52563.0, "2025-07": 58465.0, "2025-08": 55513.0, "2025-09": 57556.0, "2025-10": 57565.0, "2025-11": 55211.0, "2025-12": 47450.0, "2026-01": 63098.0, "2026-02": 57821.0}}, "forecast": [{"OPERADORA": "CCG", "REDE_PRESTADOR": "PREST. CRED", "TIER": 1, "MESES_COM_DADOS": 14, "QT_PARCIAL": 18153, "PREVISAO": 39752.0, "IC_LOW": 31551.0, "IC_HIGH": 47952.0, "DESVIO": 4184.0, "M_PROP": 43287.92307692308, "M_PROP_AJ": 45452.31923076924, "M_HW": 38209.7445682572, "M_SARIMAX": 35362.01728131083, "M_ML": 38971.7256659057, "M_REF": 33411.02994287251, "M_MM3": 0.0, "N_METODOS_VALIDOS": 6}, {"OPERADORA": "CCG", "REDE_PRESTADOR": "PREST. PROP", "TIER": 1, "MESES_COM_DADOS": 14, "QT_PARCIAL": 65617, "PREVISAO": 136327.0, "IC_LOW": 96764.0, "IC_HIGH": 175890.0, "DESVIO": 20185.0, "M_PROP": 156471.3076923077, "M_PROP_AJ": 164294.87307692308, "M_HW": 131350.78447369122, "M_SARIMAX": 116377.50722359904, "M_ML": 125940.56139367195, "M_REF": 108712.32401358882, "M_MM3": 0.0, "N_METODOS_VALIDOS": 6}, {"OPERADORA": "CLINIPAM", "REDE_PRESTADOR": "PREST. CRED", "TIER": 1, "MESES_COM_DADOS": 14, "QT_PARCIAL": 61663, "PREVISAO": 138248.0, "IC_LOW": 116646.0, "IC_HIGH": 159849.0, "DESVIO": 11021.0, "M_PROP": 147042.53846153847, "M_PROP_AJ": 154394.6653846154, "M_HW": 124343.73225037774, "M_SARIMAX": 127152.14679058587, "M_ML": 129086.73664264649, "M_REF": 139376.7961003051, "M_MM3": 0.0, "N_METODOS_VALIDOS": 6}, {"OPERADORA": "CLINIPAM", "REDE_PRESTADOR": "PREST. PROP", "TIER": 1, "MESES_COM_DADOS": 14, "QT_PARCIAL": 112454, "PREVISAO": 245569.0, "IC_LOW": 201157.0, "IC_HIGH": 289981.0, "DESVIO": 22659.0, "M_PROP": 268159.53846153844, "M_PROP_AJ": 281567.5153846154, "M_HW": 237792.27825468796, "M_SARIMAX": 233195.81066143812, "M_ML": 213830.20856955068, "M_REF": 238251.12902194727, "M_MM3": 0.0, "N_METODOS_VALIDOS": 6}, {"OPERADORA": "HAPVIDA", "REDE_PRESTADOR": "PREST. CRED", "TIER": 1, "MESES_COM_DADOS": 14, "QT_PARCIAL": 697546, "PREVISAO": 1489800.0, "IC_LOW": 1141430.0, "IC_HIGH": 1838170.0, "DESVIO": 177740.0, "M_PROP": 1663378.923076923, "M_PROP_AJ": 1746547.8692307693, "M_HW": 1431201.618035909, "M_SARIMAX": 1332891.7934038164, "M_ML": 1393848.9447820247, "M_REF": 1247344.8157573289, "M_MM3": 0.0, "N_METODOS_VALIDOS": 6}, {"OPERADORA": "HAPVIDA", "REDE_PRESTADOR": "PREST. PROP", "TIER": 1, "MESES_COM_DADOS": 14, "QT_PARCIAL": 2313189, "PREVISAO": 5115733.0, "IC_LOW": 4084848.0, "IC_HIGH": 6146619.0, "DESVIO": 525962.0, "M_PROP": 5516066.076923077, "M_PROP_AJ": 5791869.380769231, "M_HW": 5320893.756632813, "M_SARIMAX": 4638475.034699353, "M_ML": 4938388.870289049, "M_REF": 4249349.468131176, "M_MM3": 0.0, "N_METODOS_VALIDOS": 6}, {"OPERADORA": "NDI", "REDE_PRESTADOR": "PREST. CRED", "TIER": 1, "MESES_COM_DADOS": 14, "QT_PARCIAL": 811618, "PREVISAO": 1863133.0, "IC_LOW": 1656933.0, "IC_HIGH": 2069334.0, "DESVIO": 105204.0, "M_PROP": 1935396.7692307692, "M_PROP_AJ": 2032166.6076923078, "M_HW": 1873196.521861563, "M_SARIMAX": 1715967.6476729005, "M_ML": 1763218.0392669458, "M_REF": 1831589.2354370945, "M_MM3": 0.0, "N_METODOS_VALIDOS": 6}, {"OPERADORA": "NDI", "REDE_PRESTADOR": "PREST. PROP", "TIER": 1, "MESES_COM_DADOS": 14, "QT_PARCIAL": 1147309, "PREVISAO": 2646486.0, "IC_LOW": 2360185.0, "IC_HIGH": 2932787.0, "DESVIO": 146072.0, "M_PROP": 2735890.692307692, "M_PROP_AJ": 2872685.226923077, "M_HW": 2612898.257143075, "M_SARIMAX": 2421668.2002860215, "M_ML": 2604683.439934001, "M_REF": 2513221.053664248, "M_MM3": 0.0, "N_METODOS_VALIDOS": 6}, {"OPERADORA": "NDIMG", "REDE_PRESTADOR": "PREST. CRED", "TIER": 1, "MESES_COM_DADOS": 14, "QT_PARCIAL": 207276, "PREVISAO": 460516.0, "IC_LOW": 380538.0, "IC_HIGH": 540495.0, "DESVIO": 40805.0, "M_PROP": 494273.53846153844, "M_PROP_AJ": 518987.2153846154, "M_HW": 456739.1526001689, "M_SARIMAX": 408232.6305909313, "M_ML": 444622.7698698611, "M_REF": 409647.7405125984, "M_MM3": 0.0, "N_METODOS_VALIDOS": 6}, {"OPERADORA": "NDIMG", "REDE_PRESTADOR": "PREST. PROP", "TIER": 1, "MESES_COM_DADOS": 14, "QT_PARCIAL": 31065, "PREVISAO": 63957.0, "IC_LOW": 45278.0, "IC_HIGH": 82636.0, "DESVIO": 9530.0, "M_PROP": 74078.07692307692, "M_PROP_AJ": 77781.98076923077, "M_HW": 58651.163049318624, "M_SARIMAX": 59121.075833814335, "M_ML": 57161.16305012257, "M_REF": 51352.041207523696, "M_MM3": 0.0, "N_METODOS_VALIDOS": 6}], "comparativo": [{"OPERADORA": "CCG", "REDE_PRESTADOR": "PREST. CRED", "QTD_PREVISTA": 39752.0, "QTD_M1": 33591, "QTD_YOY": 38018, "VAR_M1_PCT": 0.1834122235122504, "VAR_YOY_PCT": 0.045609974222736493}, {"OPERADORA": "CCG", "REDE_PRESTADOR": "PREST. PROP", "QTD_PREVISTA": 136327.0, "QTD_M1": 112966, "QTD_YOY": 124358, "VAR_M1_PCT": 0.20679673530088705, "VAR_YOY_PCT": 0.09624632110519626}, {"OPERADORA": "CLINIPAM", "REDE_PRESTADOR": "PREST. CRED", "QTD_PREVISTA": 138248.0, "QTD_M1": 128110, "QTD_YOY": 149965, "VAR_M1_PCT": 0.07913511825774733, "VAR_YOY_PCT": -0.07813156403160737}, {"OPERADORA": "CLINIPAM", "REDE_PRESTADOR": "PREST. PROP", "QTD_PREVISTA": 245569.0, "QTD_M1": 234427, "QTD_YOY": 230976, "VAR_M1_PCT": 0.04752865497574943, "VAR_YOY_PCT": 0.06317972430036023}, {"OPERADORA": "HAPVIDA", "REDE_PRESTADOR": "PREST. CRED", "QTD_PREVISTA": 1489800.0, "QTD_M1": 1324031, "QTD_YOY": 1289027, "VAR_M1_PCT": 0.12520024077986092, "VAR_YOY_PCT": 0.1557554651686892}, {"OPERADORA": "HAPVIDA", "REDE_PRESTADOR": "PREST. PROP", "QTD_PREVISTA": 5115733.0, "QTD_M1": 4529928, "QTD_YOY": 4544297, "VAR_M1_PCT": 0.12931883244060383, "VAR_YOY_PCT": 0.125747942971157}, {"OPERADORA": "NDI", "REDE_PRESTADOR": "PREST. CRED", "QTD_PREVISTA": 1863133.0, "QTD_M1": 1699653, "QTD_YOY": 2075195, "VAR_M1_PCT": 0.09618433880327348, "VAR_YOY_PCT": -0.1021889509178655}, {"OPERADORA": "NDI", "REDE_PRESTADOR": "PREST. PROP", "QTD_PREVISTA": 2646486.0, "QTD_M1": 2425074, "QTD_YOY": 2659124, "VAR_M1_PCT": 0.09130113142939145, "VAR_YOY_PCT": -0.004752692992128216}, {"OPERADORA": "NDIMG", "REDE_PRESTADOR": "PREST. CRED", "QTD_PREVISTA": 460516.0, "QTD_M1": 403768, "QTD_YOY": 452200, "VAR_M1_PCT": 0.14054605615105698, "VAR_YOY_PCT": 0.01839009287925686}, {"OPERADORA": "NDIMG", "REDE_PRESTADOR": "PREST. PROP", "QTD_PREVISTA": 63957.0, "QTD_M1": 57821, "QTD_YOY": 48536, "VAR_M1_PCT": 0.1061206136178896, "VAR_YOY_PCT": 0.31772292731168617}], "agg_operadora": [{"OPERADORA": "HAPVIDA", "QTD_PREVISTA": 6605533.0, "QTD_M1": 5853959, "QTD_YOY": 5833324, "VAR_M1_PCT": 0.12838730165346224, "VAR_YOY_PCT": 0.1323788975205218}, {"OPERADORA": "NDI", "QTD_PREVISTA": 4509619.0, "QTD_M1": 4124727, "QTD_YOY": 4734319, "VAR_M1_PCT": 0.09331332716080354, "VAR_YOY_PCT": -0.04746194753669952}, {"OPERADORA": "NDIMG", "QTD_PREVISTA": 524473.0, "QTD_M1": 461589, "QTD_YOY": 500736, "VAR_M1_PCT": 0.13623374907114338, "VAR_YOY_PCT": 0.0474042209867076}, {"OPERADORA": "CLINIPAM", "QTD_PREVISTA": 383817.0, "QTD_M1": 362537, "QTD_YOY": 380941, "VAR_M1_PCT": 0.05869745708713858, "VAR_YOY_PCT": 0.0075497255480507786}, {"OPERADORA": "CCG", "QTD_PREVISTA": 176079.0, "QTD_M1": 146557, "QTD_YOY": 162376, "VAR_M1_PCT": 0.20143698356270945, "VAR_YOY_PCT": 0.08439055032763454}], "agg_rede": [{"REDE_PRESTADOR": "PREST. CRED", "QTD_PREVISTA": 3991449.0, "QTD_M1": 3589153, "QTD_YOY": 4004405, "VAR_M1_PCT": 0.11208661207811432, "VAR_YOY_PCT": -0.0032354369750312584}, {"REDE_PRESTADOR": "PREST. PROP", "QTD_PREVISTA": 8208072.0, "QTD_M1": 7360216, "QTD_YOY": 7607291, "VAR_M1_PCT": 0.11519444538040724, "VAR_YOY_PCT": 0.07897436814235181}], "backtest": [{"METODO": "prop", "RMSE": 4.300413082683905e-11, "TS": 18.0, "N": 30}, {"METODO": "prop_aj", "RMSE": 90118.51893269183, "TS": 30.0, "N": 30}, {"METODO": "hw", "RMSE": 390824.5654741976, "TS": 19.892088960295048, "N": 30}, {"METODO": "sarimax", "RMSE": 305935.3250162502, "TS": 19.295998280502168, "N": 30}, {"METODO": "ml", "RMSE": 350797.7147665816, "TS": 8.001774664986623, "N": 30}, {"METODO": "ref", "RMSE": 419080.7836388286, "TS": -7.678486116520695, "N": 20}], "heatmap": {"operadoras": ["CCG", "CLINIPAM", "HAPVIDA", "NDI", "NDIMG"], "redes": ["PREST. CRED", "PREST. PROP"], "values_m1": [[0.1834, 0.2068], [0.0791, 0.0475], [0.1252, 0.1293], [0.0962, 0.0913], [0.1405, 0.1061]], "values_yoy": [[0.0456, 0.0962], [-0.0781, 0.0632], [0.1558, 0.1257], [-0.1022, -0.0048], [0.0184, 0.3177]]}, "tier_dist": {"1": 10}};
 
+// --- Globals ---
 const M = D.meta;
 let filterOperadora = '', filterRede = '';
 const charts = {};
 
+// --- Init header ---
 document.getElementById('hd-mes').textContent = M.mes_corrente_label;
 document.getElementById('hd-dia').textContent = M.dias_realizados;
 document.getElementById('hd-diasmes').textContent = M.dias_no_mes;
@@ -208,6 +326,7 @@ document.getElementById('hd-series').textContent = M.total_series;
 document.querySelectorAll('.lbl-m1').forEach(e => e.textContent = M.mes_m1_label);
 document.querySelectorAll('.lbl-yoy').forEach(e => e.textContent = M.mes_yoy_label);
 
+// --- Populate filters ---
 const operadoras = [...new Set(D.forecast.map(r => r.OPERADORA))].sort();
 const selO = document.getElementById('flt-operadora');
 operadoras.forEach(t => { const o = document.createElement('option'); o.value = t; o.textContent = t; selO.appendChild(o); });
@@ -228,10 +347,15 @@ function resetFilters() {
     applyFilters();
 }
 
+// --- Helpers ---
 function fmtN(v) {
     if (v == null || isNaN(v)) return '0';
     if (Math.abs(v) >= 1e6) return (v/1e6).toFixed(1) + 'M';
     if (Math.abs(v) >= 1e3) return (v/1e3).toFixed(0) + 'K';
+    return v.toLocaleString('pt-BR', {maximumFractionDigits: 0});
+}
+function fmtNFull(v) {
+    if (v == null || isNaN(v)) return '0';
     return v.toLocaleString('pt-BR', {maximumFractionDigits: 0});
 }
 function fmtPct(v) {
@@ -258,6 +382,7 @@ function aggBy(arr, key, valKeys) {
     return Object.entries(m).map(([k, v]) => ({[key]: k, ...v}));
 }
 
+// --- KPIs ---
 function renderKPIs() {
     const fc = filtered(D.forecast);
     const cmp = filtered(D.comparativo);
@@ -268,6 +393,7 @@ function renderKPIs() {
     const yoy = cmp.reduce((s, r) => s + (r.QTD_YOY || 0), 0);
     const varM1 = m1 > 0 ? (prev / m1 - 1) : null;
     const varYoY = yoy > 0 ? (prev / yoy - 1) : null;
+
     const kpis = [
         {label: 'Parcial', value: fmtN(parcial), detail: 'QT realizado ate agora'},
         {label: 'Previsao', value: fmtN(prev), detail: 'Ensemble 7 metodos', accent: true},
@@ -277,8 +403,8 @@ function renderKPIs() {
         {label: 'Var M-1', value: fmtPct(varM1), detail: 'vs ' + M.mes_m1_label, cls: varClass(varM1)},
         {label: 'Var YoY', value: fmtPct(varYoY), detail: 'vs ' + M.mes_yoy_label, cls: varClass(varYoY)},
     ];
-    const row = document.getElementById('kpi-row');
-    row.innerHTML = kpis.map(k =>
+    const allRow = document.getElementById('kpi-row-all');
+    allRow.innerHTML = kpis.map(k =>
         `<div class="kpi-card ${k.accent ? 'accent' : ''}">
             <div class="kpi-label">${k.label}</div>
             <div class="kpi-value ${k.cls || ''}">${k.value}</div>
@@ -287,6 +413,7 @@ function renderKPIs() {
     ).join('');
 }
 
+// --- Chart: Operadora bars (vertical) ---
 function renderOperadoraChart() {
     const cmp = filtered(D.comparativo);
     const agg = aggBy(cmp, 'OPERADORA', ['QTD_PREVISTA', 'QTD_M1', 'QTD_YOY']);
@@ -307,6 +434,28 @@ function renderOperadoraChart() {
     }, true);
 }
 
+// --- Chart: Rede bars (horizontal) ---
+function renderRedeChart() {
+    const cmp = filtered(D.comparativo);
+    const agg = aggBy(cmp, 'REDE_PRESTADOR', ['QTD_PREVISTA', 'QTD_M1', 'QTD_YOY']);
+    agg.sort((a, b) => b.QTD_PREVISTA - a.QTD_PREVISTA);
+    const cats = agg.map(r => r.REDE_PRESTADOR);
+    if (!charts.rede) charts.rede = echarts.init(document.getElementById('chart-rede'));
+    charts.rede.setOption({
+        tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+        legend: { data: ['Previsao', M.mes_m1_label, M.mes_yoy_label], top: 0 },
+        grid: { left: 100, right: 20, bottom: 20, top: 40 },
+        yAxis: { type: 'category', data: cats.reverse(), axisLabel: { fontSize: 11 } },
+        xAxis: { type: 'value', axisLabel: { formatter: v => fmtN(v) } },
+        series: [
+            { name: 'Previsao', type: 'bar', data: agg.map(r => r.QTD_PREVISTA).reverse(), itemStyle: { color: '#6B2D3E' } },
+            { name: M.mes_m1_label, type: 'bar', data: agg.map(r => r.QTD_M1).reverse(), itemStyle: { color: '#C4A35A' } },
+            { name: M.mes_yoy_label, type: 'bar', data: agg.map(r => r.QTD_YOY).reverse(), itemStyle: { color: '#1565C0' } },
+        ]
+    }, true);
+}
+
+// --- Chart: Serie temporal ---
 function populateSerieDropdown() {
     const sel = document.getElementById('sel-serie');
     sel.innerHTML = '';
@@ -366,6 +515,7 @@ function renderSerieChart() {
     }, true);
 }
 
+// --- Heatmaps ---
 function renderHeatmaps() {
     const hm = D.heatmap;
     function makeHeatOpt(vals) {
@@ -400,6 +550,7 @@ function renderHeatmaps() {
     charts.heatYoY.setOption(makeHeatOpt(hm.values_yoy), true);
 }
 
+// --- Backtest / Tiers ---
 function renderMethods() {
     if (D.backtest.length > 0) {
         if (!charts.backtest) charts.backtest = echarts.init(document.getElementById('chart-backtest'));
@@ -436,18 +587,19 @@ function renderMethods() {
     }
 }
 
+// --- Detail table ---
 const TBL_COLS = [
     {key: 'OPERADORA', label: 'Operadora'},
     {key: 'REDE_PRESTADOR', label: 'Rede'},
-    {key: 'QT_PARCIAL', label: 'Parcial', fmt: fmtN},
-    {key: 'PREVISAO', label: 'Previsao', fmt: fmtN},
-    {key: 'IC_LOW', label: 'IC Low', fmt: fmtN},
-    {key: 'IC_HIGH', label: 'IC High', fmt: fmtN},
+    {key: 'QT_PARCIAL', label: 'Parcial', fmt: fmtNFull},
+    {key: 'PREVISAO', label: 'Previsao', fmt: fmtNFull},
+    {key: 'IC_LOW', label: 'IC Low', fmt: fmtNFull},
+    {key: 'IC_HIGH', label: 'IC High', fmt: fmtNFull},
     {key: 'TIER', label: 'Tier'},
     {key: 'N_METODOS_VALIDOS', label: '#Met'},
-    {key: 'QTD_PREVISTA', label: 'Prev (Comp)', fmt: fmtN},
-    {key: 'QTD_M1', label: 'M-1', fmt: fmtN},
-    {key: 'QTD_YOY', label: 'YoY', fmt: fmtN},
+    {key: 'QTD_PREVISTA', label: 'Prev (Comp)', fmt: fmtNFull},
+    {key: 'QTD_M1', label: 'M-1', fmt: fmtNFull},
+    {key: 'QTD_YOY', label: 'YoY', fmt: fmtNFull},
     {key: 'VAR_M1_PCT', label: 'Var M-1', fmt: fmtPct, color: true},
     {key: 'VAR_YOY_PCT', label: 'Var YoY', fmt: fmtPct, color: true},
 ];
@@ -476,6 +628,14 @@ function renderTable() {
         return sortAsc ? va - vb : vb - va;
     });
     document.getElementById('tbl-count').textContent = rows.length + ' series';
+
+    // Update summary bar
+    const totalPrev = rows.reduce((s, r) => s + (r.PREVISAO || 0), 0);
+    const totalParc = rows.reduce((s, r) => s + (r.QT_PARCIAL || 0), 0);
+    document.getElementById('tbl-total-count').textContent = rows.length;
+    document.getElementById('tbl-total-prev').textContent = fmtNFull(totalPrev);
+    document.getElementById('tbl-total-parc').textContent = fmtNFull(totalParc);
+
     const thead = document.getElementById('tbl-head');
     thead.innerHTML = TBL_COLS.map(c =>
         `<th data-col="${c.key}">${c.label} ${sortCol === c.key ? (sortAsc ? '&#9650;' : '&#9660;') : ''}</th>`
@@ -493,25 +653,30 @@ function renderTable() {
         let cls = '';
         if (c.color && v != null && !isNaN(v)) cls = v >= 0 ? 'var-pos' : 'var-neg';
         const display = c.fmt ? c.fmt(v) : (v != null ? v : '');
-        return `<td class="${cls}">${display}</td>`;
+        return `<td class="${cls}${c.fmt ? ' num' : ''}">${display}</td>`;
     }).join('') + '</tr>').join('');
 }
 
 document.getElementById('tbl-search').addEventListener('input', renderTable);
 
+// --- Apply all filters ---
 function applyFilters() {
     renderKPIs();
     renderOperadoraChart();
+    renderRedeChart();
     populateSerieDropdown();
     renderTable();
 }
 
+// --- Resize handler ---
 window.addEventListener('resize', () => {
     Object.values(charts).forEach(c => c && c.resize());
 });
 
+// --- Initial render ---
 renderKPIs();
 renderOperadoraChart();
+renderRedeChart();
 populateSerieDropdown();
 renderHeatmaps();
 renderMethods();
